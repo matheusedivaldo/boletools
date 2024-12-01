@@ -1,0 +1,257 @@
+@import "../../vars.css";
+
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--color-bg);
+  border-radius: 16px;
+  max-width: 80%;
+  margin: 40px auto;
+}
+
+.heroTitle {
+  font-size: 4.375rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  font-family: var(--font-secondary);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-size: 200% 200%;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.heroDescription {
+  color: var(--color-text);
+  margin-bottom: 32px;
+  line-height: 1.7;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+}
+
+.heroForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.heroInputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.heroInput {
+  position: relative;
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  padding: 14px 18px;
+  height: 55px;
+  font-size: 16px;
+  width: 100%;
+  color: var(--color-text);
+  outline: none;
+  background-color: transparent;
+}
+
+.heroInput::placeholder {
+  color: transparent;
+}
+
+.heroInputLabel {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  color: #6c6c6c;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: var(--color-bg);
+}
+
+.heroInput:focus + .heroInputLabel,
+.heroInput:not(:placeholder-shown) + .heroInputLabel {
+  top: 0;
+  left: 18px;
+  font-size: 12px;
+  color: var(--color-primary);
+}
+
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.characterCount {
+  color: #9b9b9b;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: -50px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.submitButton {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-family: var(--font-primary);
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+}
+
+.submitButton:hover {
+  background-color: var(--color-dark);
+}
+
+.clearButton {
+  background-color: transparent;
+  color: var(--color-primary);
+  padding: 14px 30px;
+  font-size: 16px;
+  font-family: var(--font-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  outline: 2px solid transparent;
+}
+
+.clearButton:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  outline: 2px solid var(--color-primary);
+}
+
+.validationResult {
+  margin-top: 20px;
+  background-color: var(--color-light);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.validationResult h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.validationResult ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.validationResult li {
+  font-size: 16px;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.validationResult li strong {
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .heroContainer {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .heroTitle {
+    font-size: 3.5rem;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  .heroDescription {
+    font-size: 14px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .heroInput {
+    height: 45px;
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .submitButton,
+  .clearButton {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .buttonsContainer {
+    justify-content: flex-start;
+  }
+
+  .validationResult h2 {
+    font-size: 1.6rem;
+  }
+
+  .validationResult li {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroContainer {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  .heroDescription {
+    font-size: 12px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .heroInput {
+    height: 40px;
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .submitButton,
+  .clearButton {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .buttonsContainer {
+    justify-content: flex-start;
+  }
+}

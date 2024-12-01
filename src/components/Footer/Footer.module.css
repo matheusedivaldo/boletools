@@ -1,0 +1,149 @@
+@import "../../vars.css";
+
+.footer {
+    padding: 40px 10%;
+    color: var(--color-text);
+    border-top: 1px solid var(--color-dark);
+}
+
+.footerContent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.brand h2 {
+    font-size: 1.8rem;
+    font-family: var(--font-secondary);
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.brand p {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.contacts,
+.links {
+    flex: 1;
+    min-width: 220px;
+}
+
+.contacts ul,
+.links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contacts ul li,
+.links ul li {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contacts h3,
+.links h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    font-family: var(--font-secondary);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.contacts a,
+.links a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contacts a:hover,
+.links a:hover {
+    color: var(--color-secondary);
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+}
+
+.footerBottom {
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.footerBottom a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footerBottom a:hover {
+    color: var(--color-secondary);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footerContent {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer {
+        padding: 40px 5%;
+    }
+
+    .brand h2 {
+        font-size: 1.6rem;
+    }
+
+    .contacts ul li,
+    .links ul li {
+        font-size: 0.95rem;
+    }
+
+    .contacts h3,
+    .links h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .footerBottom {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 30px 5%;
+    }
+
+    .brand h2 {
+        font-size: 1.4rem;
+    }
+
+    .contacts ul li,
+    .links ul li {
+        font-size: 0.85rem;
+    }
+
+    .footerBottom {
+        font-size: 0.75rem;
+    }
+}
