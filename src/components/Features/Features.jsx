@@ -1,21 +1,22 @@
 import React from "react";
+import { FaCheckCircle, FaExchangeAlt, FaMagic } from "react-icons/fa";
 import styles from "./Features.module.css";
 
 const features = [
     {
         title: "Validação precisa",
         description: "Verifique rapidamente a validade de boletos bancários com tecnologia avançada.",
-        icon: "✔️",
+        icon: <FaCheckCircle />,
     },
     {
         title: "Conversão entre formatos",
         description: "Converta entre código de barras e linha digitável de forma instantânea.",
-        icon: "🔄",
+        icon: <FaExchangeAlt />,
     },
     {
         title: "Interface intuitiva",
         description: "Utilize uma interface amigável e acessível para agilizar seus processos.",
-        icon: "✨",
+        icon: <FaMagic />,
     },
 ];
 
