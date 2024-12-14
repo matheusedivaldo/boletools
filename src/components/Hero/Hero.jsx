@@ -1,16 +1,54 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Hero.module.css";
+import {
+    identificarTipoCodigo,
+    identificarTipoBoleto,
+    identificarData,
+    linhaDigitavel2CodBarras,
+    codBarras2LinhaDigitavel,
+    validarCodigoComDV,
+    identificarValor,
+} from "../../utils/boletoValidation";
 
-const validateInput = (input) => {
-    const isValid = input.length === 47 || input.length === 48;
-    return {
-        codigoDeBarras: input,
-        linhaDigitavel: input,
-        valido: isValid,
-        tipoBoleto: isValid ? "Boleto Bancário" : "Inválido",
-        tipoCodigo: isValid ? "Código de Barras" : "Inválido",
-        validade: isValid ? "12/12/2024" : "Inválido",
-    };
+const formatarData = (dataString) => {
+    const meses = [
+        "janeiro",
+        "fevereiro",
+        "março",
+        "abril",
+        "maio",
+        "junho",
+        "julho",
+        "agosto",
+        "setembro",
+        "outubro",
+        "novembro",
+        "dezembro",
+    ];
+    const diasSemana = [
+        "domingo",
+        "segunda-feira",
+        "terça-feira",
+        "quarta-feira",
+        "quinta-feira",
+        "sexta-feira",
+        "sábado",
+    ];
+
+    const [dia, mes, ano] = dataString.split("/");
+    const data = new Date(`${ano}-${mes}-${dia}`);
+
+    const diaSemana = diasSemana[data.getUTCDay()];
+    const mesNome = meses[data.getUTCMonth()];
+    const diaNumerico = data.getUTCDate().toString().padStart(2, "0");
+
+    return `${diaSemana} • ${diaNumerico} de ${mesNome} de ${data.getUTCFullYear()}`;
+};
+
+const formatarTipoCodigo = (tipoCodigo) => {
+    if (tipoCodigo === "LINHA_DIGITAVEL") return "Linha Digitável";
+    if (tipoCodigo === "CODIGO_DE_BARRAS") return "Código de Barras";
+    return "Não informado";
 };
 
 const Hero = () => {
@@ -21,6 +59,7 @@ const Hero = () => {
         valido: false,
         tipoBoleto: "",
         tipoCodigo: "",
+        valor: "",
         validade: "",
     });
     const maxLength = 56;
@@ -38,8 +77,45 @@ const Hero = () => {
     };
 
     const handleValidate = () => {
-        const result = validateInput(inputValue);
-        setValidationData(result);
+        try {
+            const sanitizedInput = inputValue.replace(/[^0-9]/g, "");
+            const tipoCodigo = identificarTipoCodigo(sanitizedInput);
+            const tipoBoleto = identificarTipoBoleto(sanitizedInput);
+            const validade = identificarData(sanitizedInput, tipoCodigo);
+            const valor = identificarValor(sanitizedInput, tipoCodigo);
+            const valido = validarCodigoComDV(sanitizedInput, tipoCodigo);
+
+            const codigoDeBarras =
+                tipoCodigo === "LINHA_DIGITAVEL"
+                    ? linhaDigitavel2CodBarras(sanitizedInput)
+                    : sanitizedInput;
+
+            const linhaDigitavel =
+                tipoCodigo === "CODIGO_DE_BARRAS"
+                    ? codBarras2LinhaDigitavel(sanitizedInput, true)
+                    : sanitizedInput;
+
+            setValidationData({
+                codigoDeBarras,
+                linhaDigitavel,
+                valido,
+                tipoBoleto:
+                    tipoBoleto.charAt(0).toUpperCase() + tipoBoleto.slice(1).toLowerCase(),
+                tipoCodigo: formatarTipoCodigo(tipoCodigo),
+                valor: valor ? `R$ ${valor.toFixed(2).replace(".", ",")}` : "Não informado",
+                validade: validade ? formatarData(validade) : "Não informado",
+            });
+        } catch (error) {
+            setValidationData({
+                codigoDeBarras: "",
+                linhaDigitavel: "",
+                valido: false,
+                tipoBoleto: "Erro na validação",
+                tipoCodigo: "Erro",
+                valor: "Erro",
+                validade: "Erro",
+            });
+        }
     };
 
     const handleClear = () => {
@@ -50,6 +126,7 @@ const Hero = () => {
             valido: false,
             tipoBoleto: "",
             tipoCodigo: "",
+            valor: "",
             validade: "",
         });
     };
@@ -68,7 +145,8 @@ const Hero = () => {
                         id="input"
                         value={inputValue}
                         onChange={handleChange}
-                        className={`${styles.heroInput} ${validationData.valido === false ? styles.invalidInput : ''}`}
+                        className={`${styles.heroInput} ${validationData.valido === false ? styles.invalidInput : ""
+                            }`}
                         placeholder=" "
                         maxLength={maxLength}
                         inputMode="numeric"
@@ -87,7 +165,11 @@ const Hero = () => {
                         <button type="button" onClick={handleClear} className={styles.clearButton}>
                             Limpar
                         </button>
-                        <button type="button" onClick={handleValidate} className={styles.submitButton}>
+                        <button
+                            type="button"
+                            onClick={handleValidate}
+                            className={styles.submitButton}
+                        >
                             Validar
                         </button>
                     </div>
@@ -97,12 +179,31 @@ const Hero = () => {
             <div className={styles.validationResult}>
                 <h2>Resultado</h2>
                 <ul>
-                    <li><strong>Código de Barras:</strong> {validationData.codigoDeBarras || "Não informado"}</li>
-                    <li><strong>Linha Digitável:</strong> {validationData.linhaDigitavel || "Não informado"}</li>
-                    <li><strong>Válido:</strong> {validationData.valido ? "Sim" : "Não"}</li>
-                    <li><strong>Tipo de Boleto:</strong> {validationData.tipoBoleto || "Não informado"}</li>
-                    <li><strong>Tipo do Código Inserido:</strong> {validationData.tipoCodigo || "Não informado"}</li>
-                    <li><strong>Validade:</strong> {validationData.validade || "Não informado"}</li>
+                    <li>
+                        <strong>Código de Barras:</strong>{" "}
+                        {validationData.codigoDeBarras || "Não informado"}
+                    </li>
+                    <li>
+                        <strong>Linha Digitável:</strong>{" "}
+                        {validationData.linhaDigitavel || "Não informado"}
+                    </li>
+                    <li>
+                        <strong>Válido:</strong> {validationData.valido ? "Sim" : "Não"}
+                    </li>
+                    <li>
+                        <strong>Tipo de Boleto:</strong>{" "}
+                        {validationData.tipoBoleto || "Não informado"}
+                    </li>
+                    <li>
+                        <strong>Tipo do Código Inserido:</strong>{" "}
+                        {validationData.tipoCodigo || "Não informado"}
+                    </li>
+                    <li>
+                        <strong>Valor:</strong> {validationData.valor || "Não informado"}
+                    </li>
+                    <li>
+                        <strong>Validade:</strong> {validationData.validade || "Não informado"}
+                    </li>
                 </ul>
             </div>
         </div>
