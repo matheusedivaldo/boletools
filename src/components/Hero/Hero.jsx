@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Hero.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
     identificarTipoCodigo,
     identificarTipoBoleto,
@@ -79,6 +81,13 @@ const Hero = () => {
     const handleValidate = () => {
         try {
             const sanitizedInput = inputValue.replace(/[^0-9]/g, "");
+
+            if (!sanitizedInput) {
+                toast.error("O campo está vazio ou contém caracteres inválidos!");
+                setInputValue("");
+                return;
+            }
+
             const tipoCodigo = identificarTipoCodigo(sanitizedInput);
             const tipoBoleto = identificarTipoBoleto(sanitizedInput);
             const validade = identificarData(sanitizedInput, tipoCodigo);
@@ -95,6 +104,12 @@ const Hero = () => {
                     ? codBarras2LinhaDigitavel(sanitizedInput, true)
                     : sanitizedInput;
 
+            if (valido) {
+                toast.success("Boleto validado com sucesso!");
+            } else {
+                toast.warn("Boleto inválido! Verifique as informações e tente novamente.");
+            }
+
             setValidationData({
                 codigoDeBarras,
                 linhaDigitavel,
@@ -106,6 +121,7 @@ const Hero = () => {
                 validade: validade ? formatarData(validade) : "Não informado",
             });
         } catch (error) {
+            toast.error("Erro ao processar a validação do boleto!");
             setValidationData({
                 codigoDeBarras: "",
                 linhaDigitavel: "",
@@ -129,10 +145,12 @@ const Hero = () => {
             valor: "",
             validade: "",
         });
+        toast.info("Campos limpos com sucesso!");
     };
 
     return (
         <div className={styles.heroContainer} id="home">
+            <ToastContainer />
             <h1 className={styles.heroTitle}>Boletools</h1>
             <p className={styles.heroDescription}>
                 Utilize nossa ferramenta para validar boletos com precisão, seja a partir do código de barras ou da linha digitável. Também realizamos conversões rápidas entre os dois formatos, tornando o processo mais eficiente e seguro.
