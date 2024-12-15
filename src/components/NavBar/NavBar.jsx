@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import styles from './Navbar.module.css';
+import logo from '../../assets/logo.svg';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,8 +12,9 @@ const Navbar = () => {
     };
 
     const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-        document.documentElement.setAttribute('data-theme', darkMode ? 'light' : 'dark');
+        const isDarkMode = !darkMode;
+        setDarkMode(isDarkMode);
+        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     };
 
     const menuItems = [
@@ -24,7 +26,9 @@ const Navbar = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbarContent}>
-                <div className={styles.logo}>Boletools</div>
+                <div className={styles.logo}>
+                    <img src={logo} alt="Boletools Logo" className={styles.logoImage} />
+                </div>
                 <div
                     className={`${styles.menuIcon} ${menuOpen ? styles.open : ''}`}
                     onClick={toggleMenu}

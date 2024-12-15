@@ -21,9 +21,13 @@
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
 }
 
 .menuIcon {
