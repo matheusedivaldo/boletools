@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import styles from './Navbar.module.css';
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/logos.svg';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
