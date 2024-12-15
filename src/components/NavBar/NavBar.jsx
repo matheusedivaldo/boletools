@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import styles from './Navbar.module.css';
-import logo from '../../assets/logos.svg';
+import logoDesktop from '../../assets/logos.svg';
+import logoMobile from '../../assets/logop.svg';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -17,6 +19,16 @@ const Navbar = () => {
         document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     };
 
+    const updateLogoForScreenSize = () => {
+        setIsMobile(window.innerWidth <= 768);
+    };
+
+    useEffect(() => {
+        updateLogoForScreenSize();
+        window.addEventListener('resize', updateLogoForScreenSize);
+        return () => window.removeEventListener('resize', updateLogoForScreenSize);
+    }, []);
+
     const menuItems = [
         { label: 'Início', href: '#home' },
         { label: 'Funcionalidades', href: '#features' },
@@ -27,7 +39,11 @@ const Navbar = () => {
         <nav className={styles.navbar}>
             <div className={styles.navbarContent}>
                 <div className={styles.logo}>
-                    <img src={logo} alt="Boletools Logo" className={styles.logoImage} />
+                    <img
+                        src={isMobile ? logoMobile : logoDesktop}
+                        alt="Boletools Logo"
+                        className={styles.logoImage}
+                    />
                 </div>
                 <div
                     className={`${styles.menuIcon} ${menuOpen ? styles.open : ''}`}
