@@ -206,34 +206,35 @@ const Hero = () => {
                     </div>
                 </div>
             </form>
-
             <div className={styles.validationResult}>
-                <h2>Resultado</h2>
+                <h2>Detalhes da Validação</h2>
                 <ul>
                     <li>
-                        <strong>Código de Barras:</strong>{" "}
-                        {validationData.codigoDeBarras || "Não informado"}
+                        <strong>Código de Barras Gerado:</strong>{" "}
+                        {validationData.codigoDeBarras || "Não disponível"}
                     </li>
                     <li>
-                        <strong>Linha Digitável:</strong>{" "}
-                        {validationData.linhaDigitavel || "Não informado"}
+                        <strong>Linha Digitável Gerada:</strong>{" "}
+                        {validationData.linhaDigitavel || "Não disponível"}
                     </li>
                     <li>
-                        <strong>Válido:</strong> {validationData.valido ? "Sim" : "Não"}
+                        <strong>Status de Validação:</strong>{" "}
+                        {validationData.valido ? "Boleto Válido" : "Boleto Inválido"}
                     </li>
                     <li>
-                        <strong>Tipo de Boleto:</strong>{" "}
-                        {validationData.tipoBoleto || "Não informado"}
+                        <strong>Categoria do Boleto:</strong>{" "}
+                        {validationData.tipoBoleto || "Categoria não identificada"}
                     </li>
                     <li>
-                        <strong>Tipo do Código Inserido:</strong>{" "}
-                        {validationData.tipoCodigo || "Não informado"}
+                        <strong>Formato Inserido:</strong>{" "}
+                        {validationData.tipoCodigo || "Formato não identificado"}
                     </li>
                     <li>
-                        <strong>Valor:</strong> {validationData.valor || "Não informado"}
+                        <strong>Valor do Boleto:</strong> {validationData.valor || "Não informado"}
                     </li>
                     <li>
-                        <strong>Validade:</strong> {validationData.validade || "Não informado"}
+                        <strong>Data de Validade:</strong>{" "}
+                        {validationData.validade || "Não disponível"}
                     </li>
                 </ul>
             </div>
