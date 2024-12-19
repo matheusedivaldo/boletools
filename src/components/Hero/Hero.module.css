@@ -24,6 +24,7 @@
   -webkit-background-clip: text;
   background-size: 200% 200%;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  animation: slideInFromLeft 1.2s ease-out;
 }
 
 .heroDescription {
@@ -178,49 +179,6 @@
   color: var(--color-primary);
 }
 
-@media (max-width: 768px) {
-  .heroContainer {
-    max-width: 90%;
-    padding: 20px;
-  }
-
-  .heroTitle {
-    font-size: 3.5rem;
-    text-align: left;
-    margin-bottom: 16px;
-  }
-
-  .heroDescription {
-    font-size: 14px;
-    margin-bottom: 16px;
-    text-align: left;
-  }
-
-  .heroInput {
-    height: 45px;
-    font-size: 14px;
-    padding: 12px 14px;
-  }
-
-  .submitButton,
-  .clearButton {
-    padding: 12px 24px;
-    font-size: 14px;
-  }
-
-  .buttonsContainer {
-    justify-content: flex-start;
-  }
-
-  .validationResult h2 {
-    font-size: 1.6rem;
-  }
-
-  .validationResult li {
-    font-size: 14px;
-  }
-}
-
 @media (max-width: 600px) {
   .heroContainer {
     max-width: 95%;
@@ -229,14 +187,16 @@
 
   .heroTitle {
     font-size: 2.5rem;
+    line-height: 1.2;
     text-align: left;
     margin-bottom: 16px;
   }
 
   .heroDescription {
-    font-size: 12px;
-    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.6;
     text-align: left;
+    margin-bottom: 50px;
   }
 
   .heroInput {

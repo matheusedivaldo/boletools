@@ -151,9 +151,10 @@ const Hero = () => {
     return (
         <div className={styles.heroContainer} id="home">
             <ToastContainer />
-            <h1 className={styles.heroTitle}>Boletools</h1>
+            <h1 className={styles.heroTitle}>Praticidade em boletos</h1>
             <p className={styles.heroDescription}>
-                Utilize nossa ferramenta para validar boletos com precisão, seja a partir do código de barras ou da linha digitável. Também realizamos conversões rápidas entre os dois formatos, tornando o processo mais eficiente e seguro.
+                Utilize <strong>nossa ferramenta</strong> para validar boletos com precisão, seja a partir do código de barras ou da linha digitável.
+                Também realizamos <strong>conversões rápidas</strong> entre os dois formatos, tornando o processo mais eficiente e seguro.
             </p>
             <form className={styles.heroForm} onSubmit={(e) => e.preventDefault()}>
                 <div className={styles.heroInputContainer}>
