@@ -211,11 +211,11 @@ const Hero = () => {
                 <ul>
                     <li>
                         <strong>Código de Barras Gerado:</strong>{" "}
-                        {validationData.codigoDeBarras || "Não disponível"}
+                        {validationData.valido ? validationData.codigoDeBarras : "—"}
                     </li>
                     <li>
                         <strong>Linha Digitável Gerada:</strong>{" "}
-                        {validationData.linhaDigitavel || "Não disponível"}
+                        {validationData.valido ? validationData.linhaDigitavel : "—"}
                     </li>
                     <li>
                         <strong>Status de Validação:</strong>{" "}
@@ -223,18 +223,19 @@ const Hero = () => {
                     </li>
                     <li>
                         <strong>Categoria do Boleto:</strong>{" "}
-                        {validationData.tipoBoleto || "Categoria não identificada"}
+                        {validationData.valido ? validationData.tipoBoleto : "—"}
                     </li>
                     <li>
                         <strong>Formato Inserido:</strong>{" "}
-                        {validationData.tipoCodigo || "Formato não identificado"}
+                        {validationData.valido ? validationData.tipoCodigo : "—"}
                     </li>
                     <li>
-                        <strong>Valor do Boleto:</strong> {validationData.valor || "Não informado"}
+                        <strong>Valor do Boleto:</strong>{" "}
+                        {validationData.valido ? validationData.valor : "—"}
                     </li>
                     <li>
                         <strong>Data de Validade:</strong>{" "}
-                        {validationData.validade || "Não disponível"}
+                        {validationData.valido ? validationData.validade : "—"}
                     </li>
                 </ul>
             </div>
