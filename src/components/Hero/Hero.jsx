@@ -48,9 +48,21 @@ const formatarData = (dataString) => {
 };
 
 const formatarTipoCodigo = (tipoCodigo) => {
-    if (tipoCodigo === "LINHA_DIGITAVEL") return "Linha Digitável";
-    if (tipoCodigo === "CODIGO_DE_BARRAS") return "Código de Barras";
-    return "Não informado";
+    const formatos = {
+        LINHA_DIGITAVEL: "Linha Digitável",
+        CODIGO_DE_BARRAS: "Código de Barras",
+        CARTAO_DE_CREDITO: "Cartão de Crédito",
+        ARRECADACAO_PREFEITURA: "Arrecadação da Prefeitura",
+        CONVENIO_SANEAMENTO: "Convênio de Saneamento",
+        CONVENIO_ENERGIA_ELETRICA_E_GAS: "Convênio de Energia Elétrica e Gás",
+        CONVENIO_TELECOMUNICACOES: "Convênio de Telecomunicações",
+        ARRECADACAO_ORGAOS_GOVERNAMENTAIS: "Arrecadação de Órgãos Governamentais",
+        ARRECADACAO_TAXAS_DE_TRANSITO: "Arrecadação de Taxas de Trânsito",
+        OUTROS: "Outros",
+        BANCO: "Banco",
+    };
+
+    return formatos[tipoCodigo] || "Não informado";
 };
 
 const Hero = () => {
