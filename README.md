@@ -1,8 +1,19 @@
-# React + Vite
+# 💳 Boletools
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O **Boletools** é uma ferramenta simples e eficiente para validação e conversão de boletos, ideal para desenvolvedores e usuários finais. 🚀
 
-Currently, two official plugins are available:
+## ✨ Funcionalidades
+- ✅ Validação precisa de boletos bancários
+- 🔄 Conversão entre código de barras e linha digitável
+- ⚡ Processamento rápido e confiável
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Tecnologias Utilizadas
+- ⚛️ React
+- 💻 JavaScript
+- 🎨 CSS
+
+## 🌟 Acesse o Projeto
+Você pode acessar o site aqui: [Boletools](https://boletools.net.br)
+
+## 📜 Licença
+Este projeto está licenciado sob a Licença MIT.
