@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaCheckCircle, FaExchangeAlt, FaMagic } from "react-icons/fa";
+import "aos/dist/aos.css";
+import AOS from "aos";
 import styles from "./Features.module.css";
 
 const features = [
@@ -21,12 +23,27 @@ const features = [
 ];
 
 const Features = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 800,
+            once: false,
+        });
+        AOS.refresh();
+    }, []);
+
     return (
         <section className={styles.featuresContainer} id="features">
-            <h2 className={styles.featuresTitle}>Funcionalidades</h2>
+            <h2 className={styles.featuresTitle} data-aos="fade-up">
+                Funcionalidades
+            </h2>
             <div className={styles.featuresGrid}>
                 {features.map((feature, index) => (
-                    <div key={index} className={styles.featureCard}>
+                    <div
+                        key={index}
+                        className={styles.featureCard}
+                        data-aos="zoom-in"
+                        data-aos-delay={index * 100}
+                    >
                         <div className={styles.featureIcon}>{feature.icon}</div>
                         <h3 className={styles.featureTitle}>{feature.title}</h3>
                         <p className={styles.featureDescription}>{feature.description}</p>
