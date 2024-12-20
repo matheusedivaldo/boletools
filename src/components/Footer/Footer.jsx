@@ -1,5 +1,5 @@
 import React from "react";
-import { FiMail, FiPhone, FiLinkedin } from "react-icons/fi";
+import { FiMail, FiPhone, FiLinkedin, FiGithub } from "react-icons/fi";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -25,6 +25,12 @@ const Footer = () => {
                             <FiLinkedin className={styles.icon} />
                             <a href="https://www.linkedin.com/in/matheus-silva-8297a320a/" target="_blank" rel="noopener noreferrer">
                                 LinkedIn
+                            </a>
+                        </li>
+                        <li>
+                            <FiGithub className={styles.icon} />
+                            <a href="https://github.com/matheusedivaldo" target="_blank">
+                                GitHub
                             </a>
                         </li>
                     </ul>
