@@ -6,7 +6,7 @@ import logoMobile from '../../assets/logop.svg';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
     const [isMobile, setIsMobile] = useState(false);
 
     const toggleMenu = () => {
@@ -27,6 +27,10 @@ const Navbar = () => {
         updateLogoForScreenSize();
         window.addEventListener('resize', updateLogoForScreenSize);
         return () => window.removeEventListener('resize', updateLogoForScreenSize);
+    }, []);
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', 'dark');
     }, []);
 
     const menuItems = [
