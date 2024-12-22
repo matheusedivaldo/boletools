@@ -9,5 +9,5 @@ export default defineConfig({
       localsConvention: "camelCase",
     },
   },
-  base: "/boletools/",
+  base: "http://boletools.net.br",
 });
